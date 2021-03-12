@@ -8,8 +8,8 @@
 		</navbar>
 		<swiper>
 			<swiper-item v-for="item in banner">
-				<a href="#">
-					<img :src="item" alt="none">
+				<a :href="item.aurl">
+					<img :src="item.imgurl" alt="none">
 				</a>
 			</swiper-item>
 		</swiper>
