@@ -52,6 +52,7 @@
   .tabbar-item img {
     width: 24px;
     vertical-align: middle;
+/* 	对于块级元素不起作用 */
   }
 /*  .isactivated{
     color: orangered;

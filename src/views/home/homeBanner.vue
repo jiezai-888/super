@@ -47,7 +47,7 @@
 			getData().banner.then(res=>{
 				this.banner=res
 			})
-			console.log(getData().banner)
+			// console.log(getData().banner)
 		}
 	}
 </script>
