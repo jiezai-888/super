@@ -8,9 +8,10 @@
 		</navbar>
 		<homebanner/>
 		<homerecommend></homerecommend>
-		<tabcontrole class="tabcontrole" :titles="['流行','新款','精选']">
+		<tabcontrole class="tabcontrole" :titles="['流行','新款','精选']"
+		@tabclick="tabclick">
 		</tabcontrole>
-		<goodslist :goods="goods['population'].list">
+		<goodslist :goods="changetitle">
 		</goodslist>
 	</div>
 </template>
@@ -39,12 +40,13 @@
 					'population':{page:0,list:[]},
 					'newstyle':{page:0,list:[]},
 					'bestsell':{page:0,list:[]}
-				}
+				},
+				currenttitle:'population'
 			}
 		},
 		created() {
 			//请求home页面商品数据
-			this.getHomeGoodsData('population')
+			this.getHomeGoodsData(this.currenttitle);
 		},
 		methods:{
 			getHomeGoodsData(type){
@@ -59,6 +61,25 @@
 				}).catch(err=>{
 					
 				})
+			},
+			tabclick(index){
+				switch(index){
+					case 0:
+					this.currenttitle='population'
+					break
+					case 1:
+					this.currenttitle='newstyle'
+					break
+					case 2:
+					this.currenttitle='bestsell'
+					break
+				}
+				this.getHomeGoodsData(this.currenttitle);
+			}
+		},
+		computed:{
+			changetitle(){
+				return this.goods[this.currenttitle].list;
 			}
 		}
 	}
