@@ -39,8 +39,11 @@
 
 <style>
 	.goodslistitem{
+		display: flex;
+		flex-wrap: wrap;
 		background-color: gainsboro;
-		margin-bottom:3.75rem;
+		justify-content: space-around;
+		/* margin-bottom:3.75rem; */
 	}
 	.goodslistitem .item{
 		display: inline-block;
