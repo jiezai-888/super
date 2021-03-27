@@ -10,61 +10,19 @@
 		<homerecommend></homerecommend>
 		<tabcontrole class="tabcontrole" :titles="['流行','新款','精选']">
 		</tabcontrole>
-		<ul>
-			<li>1</li>
-			<li>2</li>
-			<li>3</li>
-			<li>4</li>
-			<li>5</li>
-			<li>6</li>
-			<li>7</li>
-			<li>8</li>
-			<li>9</li>
-			<li>0</li>
-			<li>1</li>
-			<li>1</li>
-			<li>1</li>
-			<li>1</li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li>0</li>
-			<li>1</li>
-			<li>1</li>
-			<li>1</li>
-			<li>1</li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li>0</li>
-			<li>1</li>
-			<li>1</li>
-			<li>1</li>
-			<li>1</li>
-		</ul>
+		<goodslist :goods="goods['population'].list">
+		</goodslist>
 	</div>
 </template>
 
 <script>
 	import navbar from '../../components/common/navbar/navbar.vue'
 	import tabcontrole from '../../components/content/tabControl/tabcontrol.vue'
-	
+	import {getHomeGoodsInf} from '../../network/home.js'
 	
 	import homebanner from './homeBanner.vue'
 	import homerecommend from './homeRecommend.vue'
+	import goodslist from'../../components/content/goods/goodsList.vue'
 	
 	export default {
 		name: 'home',
@@ -72,7 +30,8 @@
 			navbar,
 			homebanner,
 			homerecommend,
-			tabcontrole
+			tabcontrole,
+			goodslist
 		},
 		data(){
 			return{
@@ -81,6 +40,25 @@
 					'newstyle':{page:0,list:[]},
 					'bestsell':{page:0,list:[]}
 				}
+			}
+		},
+		created() {
+			//请求home页面商品数据
+			this.getHomeGoodsData('population')
+		},
+		methods:{
+			getHomeGoodsData(type){
+				const page=this.goods[type].page+1;
+				getHomeGoodsInf(type,page).then(res =>{
+					console.log("==================")
+					console.log(res);
+					//把数据保存到list数组当中(使用push())
+					this.goods[type].list.push(...res);
+					this.goods[type].page+=1;
+					
+				}).catch(err=>{
+					
+				})
 			}
 		}
 	}

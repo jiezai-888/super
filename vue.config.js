@@ -10,5 +10,18 @@ module.exports={
 				'views':'@/views'
 			}
 		}
-	}
+	},
+	// devServer:{
+	// 	port:"8080",
+	// 	open:true,
+	// 	proxy:{
+	// 		"/bbb":{
+	// 			target:"http://localhost:8081/bbb/",
+	// 			changeOrigin:true,
+	// 			pathRewrite:{
+	// 				"^/bbb":""
+	// 			}
+	// 		}
+	// 	}
+	// }
 }

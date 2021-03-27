@@ -1,4 +1,7 @@
-import {instance1,instance2} from "./request.js"
+import {
+	instance1,
+	instance2
+} from "./request.js"
 import axios from 'axios';
 
 // export function getHomeMultidata(){
@@ -13,29 +16,31 @@ import axios from 'axios';
 // 	})
 // }
 
-export function getData(){
-	const i1=instance1({
-		url:'/readImage'
-	}).then(res=>{
+export function getData() {
+	const i1 = instance1({
+		url: '/readImage'
+	}).then(res => {
 		return res;
 	});
-	 const i2=instance2({
-		url:'/readhomeRecommend'
-	}).then( res =>{
-		return res;
-	});
-	const obj={
-		"banner":i1,
-		"recommend":i2
-	}
 	
+	const i2 = instance2({
+		url: '/readhomeRecommend'
+	}).then(res => {
+		return res;
+	});
+	
+	const obj = {
+		"banner": i1,
+		"recommend": i2
+	}
+
 	return obj;
 }
 
-export function getHomeGoods(type,page){
-	return request({
-		url:'',
-		params:{
+export function getHomeGoodsInf(type, page) {
+	return instance1({
+		url: '/bbb',
+		params: {
 			type,
 			page
 		}
