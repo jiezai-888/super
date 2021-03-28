@@ -14,24 +14,24 @@
 </template>
 
 <script>
-	export default{
-		name:'goodsitem',
-		props:{
-			src:{
-				type:String,
-				default:'#'
+	export default {
+		name: 'goodsitem',
+		props: {
+			src: {
+				type: String,
+				default: '#'
 			},
-			title:{
-				type:String,
-				default:'null'
+			title: {
+				type: String,
+				default: 'null'
 			},
-			price:{
-				type:String,
-				default:'null'
+			price: {
+				type: String,
+				default: 'null'
 			}
 		},
-		methods:{
-			imageload(){
+		methods: {
+			imageload() {
 				this.$EventBus.$emit('imageload')
 			}
 		}
@@ -39,27 +39,33 @@
 </script>
 
 <style>
-	.goodsitem{
+	.goodsitem {
 		border: 1px solid lightgray;
 		text-align: center;
 		border-radius: 5%;
-	} 
-	.goodsitem img{
-		width: 90%;
-		margin-top:0.35rem;
 	}
-	.goodstitle{
+
+	.goodsitem img {
+		width: 90%;
+		margin-top: 0.35rem;
+	}
+
+	.goodstitle {
 		margin-top: 0.1125rem;
 		margin-bottom: 0.2rem;
 	}
-	.goodstitle h4,h6{
+
+	.goodstitle h4,
+	h6 {
 		margin: 0.1275rem;
 	}
-	.goodstitle h6{
+
+	.goodstitle h6 {
 		color: red;
 		display: inline-block;
 	}
-	.goodstitle span{
+
+	.goodstitle span {
 		font-weight: bold;
 	}
 </style>

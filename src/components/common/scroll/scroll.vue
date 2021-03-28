@@ -20,6 +20,7 @@
 			this.scroll=new BetterScroll(this.$refs.slide,{
 					movable:true,
 					click:true,
+					mouseWheel:true,
 					// eventPassthrough:'horizontal',
 					pullUpLoad:true
 				});
