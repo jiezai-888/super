@@ -33,6 +33,11 @@
 				//到底后结束一次下拉事件
 				this.scroll.finishPullUp();
 			})
+		},
+		methods:{
+			tobackclick(x,y,timeout=888){
+				this.scroll.scrollTo(x,y,timeout);
+			}
 		}
 	}
 </script>

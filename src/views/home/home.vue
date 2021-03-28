@@ -17,7 +17,7 @@
 			</goodslist>
 		</scroll>
 	<!-- 	注意组件不能够组件监听事件，想要监听必须使用native修饰符 -->
-		<toback @click.native="tobackclick"/>
+		<toback @click.native="tobacktip"/>
 	</div>
 </template>
 
@@ -96,8 +96,8 @@
 				}
 				this.getHomeGoodsData(this.currenttitle);
 			},
-			tobackclick(){
-				this.$refs.scrollorslide.scroll.scrollTo(0,0,888);
+			tobacktip(){
+				this.$refs.scrollorslide.tobackclick(0,0,999);
 			}
 			
 		},
