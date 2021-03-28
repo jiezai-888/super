@@ -2,7 +2,7 @@
 	<div class="goodsstage">
 		<div class="goodsitem">
 			<div>
-				<img :src="src"  />
+				<img :src="src" @load="imageload" />
 			</div>
 			<div class="goodstitle">
 				<h4>{{title}}</h4>
@@ -28,6 +28,11 @@
 			price:{
 				type:String,
 				default:'null'
+			}
+		},
+		methods:{
+			imageload(){
+				this.$EventBus.$emit('imageload')
 			}
 		}
 	}
