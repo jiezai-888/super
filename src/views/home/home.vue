@@ -6,7 +6,8 @@
 				<h3>Y比特~goShop</h3>
 			</div>
 		</navbar>
-		<scroll class="content" ref="scrollorslide">
+		<scroll class="content" ref="scrollorslide" :pbt="probeType"
+		@scrollpos="scrposition">
 			<homebanner/>
 			<homerecommend></homerecommend>
 			<tabcontrole class="tabcontrole" 
@@ -17,7 +18,7 @@
 			</goodslist>
 		</scroll>
 	<!-- 	注意组件不能够组件监听事件，想要监听必须使用native修饰符 -->
-		<toback @click.native="tobacktip"/>
+		<toback v-show="showornotshow" @click.native="tobacktip"/>
 	</div>
 </template>
 
@@ -61,7 +62,9 @@
 						list: []
 					}
 				},
-				currenttitle: 'population'
+				currenttitle: 'population',
+				probeType:3,
+				showornotshow:false
 			}
 		},
 		created() {
@@ -98,8 +101,10 @@
 			},
 			tobacktip(){
 				this.$refs.scrollorslide.tobackclick(0,0,999);
+			},
+			scrposition(position){
+				this.showornotshow=Math.abs(position.y)>1200?true:false;
 			}
-			
 		},
 		mounted() {
 			this.$EventBus.$on('imageload',()=>{
@@ -145,7 +150,7 @@
 	}
 	
 	.content{
-		height: 34.0rem;
+		height: 33.5rem;
 		overflow: hidden;
 	}
 </style>

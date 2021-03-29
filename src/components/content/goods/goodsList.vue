@@ -6,7 +6,7 @@
 			:title="item.title"
 			:price="item.price"></goodsitem>
 		</div>
-		<div>
+		<!-- <div>
 			<ul>
 				<li>1</li>
 				<li>2</li>
@@ -14,7 +14,7 @@
 				<li>4</li>
 				<li>f</li>
 			</ul>
-		</div>
+		</div> -->
 	</div>
 </template>
 
