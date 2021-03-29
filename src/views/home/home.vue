@@ -8,6 +8,7 @@
 		</navbar>
 		<scroll class="content" ref="scrollorslide" :pbt="probeType"
 		@scrollpos="scrposition"
+		:style="{height:getpageheight}"
 		:pUL="pullUpLoad"
 		@uploadmore="uploadmore">
 			<homebanner/>
@@ -18,9 +19,11 @@
 			</tabcontrole>
 			<goodslist :goods="changetitle">
 			</goodslist>
+			<div>人家是有底线的wow!!!</div>
 		</scroll>
 	<!-- 	注意组件不能够组件监听事件，想要监听必须使用native修饰符 -->
 		<toback v-show="showornotshow" @click.native="tobacktip"/>
+		
 	</div>
 </template>
 
@@ -122,6 +125,12 @@
 		computed: {
 			changetitle() {
 				return this.goods[this.currenttitle].list;
+			},
+			getpageheight(){
+				// console.log(document.documentElement.clientHeight);
+				let pageheight=document.documentElement.clientHeight || document.body.clientHeight;
+				pageheight-=100;
+				return pageheight+'px';
 			}
 		}
 	}
@@ -158,7 +167,7 @@
 	}
 	
 	.content{
-		height: 33.5rem;
+		/* height: 33.5rem; */
 		overflow: hidden;
 	}
 </style>
