@@ -7,7 +7,9 @@
 			</div>
 		</navbar>
 		<scroll class="content" ref="scrollorslide" :pbt="probeType"
-		@scrollpos="scrposition">
+		@scrollpos="scrposition"
+		:pUL="pullUpLoad"
+		@uploadmore="uploadmore">
 			<homebanner/>
 			<homerecommend></homerecommend>
 			<tabcontrole class="tabcontrole" 
@@ -64,7 +66,8 @@
 				},
 				currenttitle: 'population',
 				probeType:3,
-				showornotshow:false
+				showornotshow:false,
+				pullUpLoad:true
 			}
 		},
 		created() {
@@ -103,7 +106,12 @@
 				this.$refs.scrollorslide.tobackclick(0,0,999);
 			},
 			scrposition(position){
-				this.showornotshow=Math.abs(position.y)>1200?true:false;
+				this.showornotshow=Math.abs(position.y)>788?true:false;
+			},
+			uploadmore(){
+				// console.log('上拉加载更更多多')
+				this.getHomeGoodsData(this.currenttitle);
+				this.$refs.scrollorslide.finishPullUp();
 			}
 		},
 		mounted() {
