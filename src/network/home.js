@@ -39,7 +39,7 @@ export function getData() {
 
 export function getHomeGoodsInf(type, page) {
 	return instance1({
-		url: '/bbb',
+		url: '/gethomegoodsinf',
 		params: {
 			type,
 			page

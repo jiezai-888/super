@@ -3,7 +3,7 @@
 		<swiper>
 			<swiper-item v-for="item in banner" :key="item.arguments">
 				<a :href="item.aurl">
-					<img :src="item.imgurl" alt="none">
+					<img :src="item.imgurl" alt="none" @load="imgload">
 				</a>
 			</swiper-item>
 		</swiper>
@@ -18,7 +18,8 @@
 		name:'homebanner',
 		data() {
 			return {
-				banner: []
+				banner: [],
+				isornotload:false
 			}
 		},
 		components:{
@@ -48,6 +49,15 @@
 				this.banner=res
 			})
 			// console.log(getData().banner)
+		},
+		methods:{
+			imgload(){
+				//避免多次发送事件
+				if(!this.isornotload){
+					this.$emit('imgload');
+					this.isornotload=true;
+				}
+			}
 		}
 	}
 </script>

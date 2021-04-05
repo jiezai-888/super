@@ -37,7 +37,7 @@
 	}
 </script>
 
-<style>
+<style scoped="scoped">
 	.goodslistitem{
 		display: flex;
 		flex-wrap: wrap;

@@ -6,6 +6,7 @@ import me from '../views/aboutme/me.vue'
 import category from '../views/category/category.vue'
 import shopcar from '../views/shopcar/shopcar.vue'
 import maintabbar from '../components/content/mainTabbar/maintabbar.vue'
+import goodsdetail from '../views/goodsdetails/goodsdetail.vue'
 
 // const home = () => import('..views/aboutme/home.vue')
 // const me = () => import('../views/aboutme/me.vue')
@@ -45,6 +46,11 @@ const routes = [{
 	// 	name: 'maintabbar',
 	// 	component: maintabbar
 	// }
+	{
+		path: '/goodsdetail/:title',
+		name: 'goodsdetail',
+		component: goodsdetail
+	},
 ]
 
 const router = new VueRouter({

@@ -1,6 +1,6 @@
 <template>
 	<div class="goodsstage">
-		<div class="goodsitem">
+		<div class="goodsitem" @click="goodsitemclick">
 			<div>
 				<img :src="src" @load="imageload" />
 			</div>
@@ -21,6 +21,7 @@
 				type: String,
 				default: '#'
 			},
+			//title也是商品id
 			title: {
 				type: String,
 				default: 'null'
@@ -32,13 +33,16 @@
 		},
 		methods: {
 			imageload() {
-				this.$EventBus.$emit('imageload')
+				this.$EventBus.$emit('imageload');
+			},
+			goodsitemclick(){
+				this.$router.push('/goodsdetail/'+this.title);
 			}
 		}
 	}
 </script>
 
-<style>
+<style scoped="scoped">
 	.goodsitem {
 		border: 1px solid lightgray;
 		text-align: center;

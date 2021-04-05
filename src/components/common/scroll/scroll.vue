@@ -57,6 +57,9 @@
 			},
 			finishPullUp(){
 				this.scroll.finishPullUp();
+			},
+			getscrolly(){
+				return this.scroll ? this.scroll.y:0;
 			}
 		}
 	}
