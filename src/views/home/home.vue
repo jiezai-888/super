@@ -13,8 +13,12 @@
 		:class="{isceilinglamp:ionceilinglamp}"
 		v-show="ionceilinglamp">
 		</tabcontrole>
-		<scroll class="content" ref="scrollorslide" :pbt="probeType" @scrollpos="scrposition"
-			:style="{height:getpageheight}" :pUL="pullUpLoad" @uploadmore="uploadmore">
+		<scroll class="content" ref="scrollorslide" 
+		:pbt="probeType" 
+		@scrollpos="scrposition"
+			:style="{height:getpageheight}" 
+			:pUL="pullUpLoad" 
+			@uploadmore="uploadmore">
 			<homebanner @imgload="imageload" />
 			<homerecommend></homerecommend>
 			<tabcontrole class="tabcontrole" 
@@ -90,8 +94,8 @@
 			getHomeGoodsData(type) {
 				const page = this.goods[type].page + 1;
 				getHomeGoodsInf(type, page).then(res => {
-					// console.log("==================")
-					// console.log(res);
+					console.log("==================")
+					console.log(res);
 					//把数据保存到list数组当中(使用push())
 					this.goods[type].list.push(...res);
 					this.goods[type].page += 1;

@@ -33,7 +33,11 @@
 					mouseWheel:true,
 					probeType:this.pbt, //一直设置为3会影响性能,不能实时监听
 					// eventPassthrough:'horizontal',
-					pullUpLoad:this.pUL
+					pullUpLoad:this.pUL,
+					
+					//检测scroller内部dom的变化，自动调用refresh方法重新计算
+					observeDOM: true
+					
 				});
 			
 			this.scroll.on('scroll',(position)=>{

@@ -43,7 +43,10 @@
 <style scoped="scoped">
 	.navbar{
 		border-bottom: 0.15rem solid gainsboro;
+		background-color: white;
 		padding: 0.35rem 0rem;
+		position: relative;
+		z-index: 3;
 	}
 	.titleitem{
 		display: inline-block;

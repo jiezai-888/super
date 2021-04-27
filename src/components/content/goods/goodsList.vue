@@ -1,10 +1,12 @@
 <template>
 	<div class="goodslist">
 		<div class="goodslistitem">
-			<goodsitem class="item" v-for="item in goods"
+			<goodsitem class="item" v-for="(item,index) in goods"
 			:src="item.imgUrl"
 			:title="item.title"
-			:price="item.price"></goodsitem>
+			:price="item.price"
+			:key="index"
+			></goodsitem>
 		</div>
 		<!-- <div>
 			<ul>
@@ -33,6 +35,9 @@
 		},
 		components:{
 			goodsitem
+		},
+		created() {
+			passvaluebysestorage();
 		}
 	}
 </script>

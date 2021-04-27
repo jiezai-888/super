@@ -1,5 +1,5 @@
 <template>
-	<div class="goodsstage">
+	<div class="goodsstage" @click="setsestorage(title,price)">
 		<div class="goodsitem" @click="goodsitemclick">
 			<div>
 				<img :src="src" @load="imageload" />
@@ -14,6 +14,8 @@
 </template>
 
 <script>
+	import {setSessionStorage} from '../../common/sestorage/sestorage.js'
+	
 	export default {
 		name: 'goodsitem',
 		props: {
@@ -37,6 +39,9 @@
 			},
 			goodsitemclick(){
 				this.$router.push('/goodsdetail/'+this.title);
+			},
+			setsestorage(key,value){
+				setSessionStorage(key,value);
 			}
 		}
 	}
