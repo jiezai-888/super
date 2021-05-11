@@ -9,12 +9,13 @@
 		name:'goodspricediscount',
 		props:{
 			price:{
-				type:String
+				type:String,
 				default:'9999'
 			}
+			
 		}
 	}
 </script>
 
-<style>
+<style scoped="scoped">
 </style>

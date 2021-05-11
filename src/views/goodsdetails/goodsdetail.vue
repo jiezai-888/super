@@ -1,6 +1,6 @@
 <template>
 	<div class="goodsdetail">
-		<goodsdetailsnavbar />
+		<goodsdetailsnavbar @titleclick="titleclick" />
 		<scroll class="content" ref="scrollorslide" :pbt="probeType" :pUL="pullUpLoad">
 			<goodsdetailswipe :swipeimg="swipeimg"></goodsdetailswipe>
 			<div class="goodsdetailtitle">
@@ -11,9 +11,26 @@
 					<h3>{{id}}</h3>
 				</div>
 				<discount />
+				<goodsconfig ref="goodsconfig" @btnout="btnout"></goodsconfig>
+				<goodsdetailcomments ref="goodsdetailcomments" />
+				<goodslist ref="goodslist" :id="id" :goodsimg="swipeimg" @imgload="imgload" />
+				
 			</div>
-
+			<!-- <detailconfiginf class="detailconfiginf"
+			v-show="show"
+			:imgurl="swipeimg[0]"
+			@clicknone="clicknone"
+			:class="{changetohid:active,changtoout:inactive}"/> -->
+			
+			<transition name="fade">
+				<detailconfiginf 
+				v-if="show"
+				:imgurl="swipeimg[0]"
+				@clicknone="clicknone"
+				/>
+			</transition>
 		</scroll>
+		<goodsdetailbottombar @addstore="addstore"></goodsdetailbottombar>
 	</div>
 </template>
 
@@ -32,8 +49,12 @@
 		getSessionStorage
 	} from '../../components/common/sestorage/sestorage.js'
 	import scroll from '../../components/common/scroll/scroll.vue'
-
-
+	import detailconfiginf from './detailschildcomponent/detailconfiginf.vue'
+	import goodsconfig from '../../components/common/goodsbasedetail/goodsconfig.vue'
+	import goodslist from './detailschildcomponent/goodslist.vue'
+	import goodsdetailcomments from './detailschildcomponent/goodsdetailcomments.vue'
+	import goodsdetailbottombar from './detailschildcomponent/goodsdetailbottombar.vue'
+	
 	export default {
 		name: 'goodsdetail',
 		data() {
@@ -50,8 +71,13 @@
 				},
 				swipeimg: [],
 				probeType: 3,
-				pullUpLoad: true
-
+				pullUpLoad: true,
+				active:false,
+				inactive:true,
+				//决定配置页面是否显示
+				hiddern:false,
+				show:false,
+				topy:[],
 			}
 		},
 		created() {
@@ -64,6 +90,9 @@
 			}).catch(err => {
 				console.log(err)
 			})
+			// this.$nextTick(()=>{
+				
+			// })
 		},
 		components: {
 			goodsdetailsnavbar,
@@ -71,7 +100,41 @@
 			goodsdetailsubtitle,
 			goodsbaseprice,
 			discount,
-			scroll
+			scroll,
+			detailconfiginf,
+			goodsconfig,
+			goodslist,
+			goodsdetailcomments,
+			goodsdetailbottombar
+		},
+		methods:{
+			clicknone(){
+				this.show=false;
+			},
+			btnout(){
+				this.show=true;
+			},
+			titleclick(index){
+				console.log(index);
+				this.$refs.scrollorslide.scroll.scrollTo(0,-this.topy[index],420);
+			},
+			imgload(){
+				this.topy.push(0);
+				this.topy.push(this.$refs.goodsconfig.$el.offsetTop);
+				this.topy.push(this.$refs.goodsdetailcomments.$el.offsetTop);
+				this.topy.push(this.$refs.goodslist.$el.offsetTop);
+			},
+			addstore(){
+				const goodsparams={
+					imageurl:this.swipeimg[0].imgurl,
+					id:this.id,
+					price:this.price,
+					count:0,
+					checked:true,
+				}
+				// this.$store.commit('addgoods',goodsparams);
+				this.$store.dispatch('addgoods',goodsparams);
+			}
 		}
 	}
 </script>
@@ -104,4 +167,22 @@
 		margin: 0.5rem;
 		color: #666666;
 	}
+	
+	.fade-enter-active{
+		animation: hid 2s linear reverse;
+	}
+	.fadd-leave-active{
+		animation: hid 2s linear;
+	}
+	
+	@keyframes hid
+	{
+		0% {height:0;opacity: 0;}
+		13%{transform: scale(1.2) ;}
+		24%{height:94%;}
+		42%{height:101%;}
+		60%{height: 60%;}
+		100% {height:100%;transform: scale(0) ; opacity: 0.8; background-color: black;}
+	}
+	
 </style>

@@ -27,3 +27,12 @@ export function getgooddetailsimg(prdname){
 		}
 	})
 }
+
+export function getgooddetailsinf(id){
+	return instance1({
+		url:'/getgooddetails',
+		params:{
+			id
+		}
+	})
+}

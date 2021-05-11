@@ -3,7 +3,7 @@
  <keep-alive exclude="goodsdetail">
 	   <router-view></router-view>
   </keep-alive>
-  <main-tabbar></main-tabbar>
+  <main-tabbar class="maintabbar"></main-tabbar>
   </div>
 </template>
 
@@ -21,4 +21,9 @@ export default {
 <style>
 	/* 导入base样式表 */
 	@import url("./assets/css/base.css");
+	.maintabbar{
+		/* position: absolute;
+		z-index: 999; */
+		bottom: 0;
+	}
 </style>

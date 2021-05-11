@@ -21,7 +21,8 @@
 		name: 'goodsdetailsnavbar',
 		data() {
 			return {
-				headtitle: ['商品', '评价', '详情', '推荐'],
+				// headtitle: ['商品', '评论', '详情', '推荐'],
+				headtitle: ['商品', '评论', '详情'],
 				currentindex:0
 			}
 		},
@@ -31,6 +32,7 @@
 		methods:{
 			titleclick(index){
 				this.currentindex=index;
+				this.$emit('titleclick',index);
 				// console.log("9999999")
 			},
 			toback(){
