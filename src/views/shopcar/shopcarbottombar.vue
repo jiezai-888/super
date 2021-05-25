@@ -52,7 +52,7 @@
 					})
 					this.active=!this.active;
 				}else{
-					console.log('999999999999')
+					// console.log('999999999999')
 					this.$store.state.goodslist.filter(item =>{
 						if(item.checked==true){
 							this.$store.commit('changecheck',item);

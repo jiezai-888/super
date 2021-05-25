@@ -15,24 +15,31 @@ const store=new Vuex.Store({
 		addcount(state,payload){
 			payload.count++;
 		},
+		descount(state,payload){
+			payload.count--;
+		},
 		addtocart(state,payload){
 			state.goodslist.push(payload)
 		}
 	},
 	actions:{
 		addgoods(context,payload){
-			let oldgoods =context.state.goodslist.find(function(item){
-				return item.id===payload.id;
+			return new Promise((resolve,reject)=>{
+				let oldgoods =context.state.goodslist.find(function(item){
+					return item.id===payload.id;
+				})
+				
+				if(oldgoods){
+					context.commit('addcount',oldgoods)
+					resolve('当前商品数量加1共('+oldgoods.count+')件')
+					// oldgoods.count+=1
+				}else{
+					payload.count=1;
+					// context.state.goodslist.push(payload)
+					context.commit('addtocart',payload);
+					resolve('您添加了新的宝贝')
+				}
 			})
-			
-			if(oldgoods){
-				context.commit('addcount',oldgoods)
-				// oldgoods.count+=1
-			}else{
-				payload.count=1;
-				// context.state.goodslist.push(payload)
-				context.commit('addtocart',payload);
-			}
 		},
 		// changecheck(context,payload){
 		// 	context.commit('changecheck',payload);

@@ -46,3 +46,14 @@ export function getHomeGoodsInf(type, page) {
 		}
 	})
 }
+
+export function login(username, userpsd) {
+	return instance1({
+		method:'POST',
+		url: '/user/login',
+		params: {
+			username,
+			userpsd
+		}
+	})
+}

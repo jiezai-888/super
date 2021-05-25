@@ -31,6 +31,7 @@
 			</transition>
 		</scroll>
 		<goodsdetailbottombar @addstore="addstore"></goodsdetailbottombar>
+		<!-- <toast :msg="msg"></toast> -->
 	</div>
 </template>
 
@@ -54,6 +55,7 @@
 	import goodslist from './detailschildcomponent/goodslist.vue'
 	import goodsdetailcomments from './detailschildcomponent/goodsdetailcomments.vue'
 	import goodsdetailbottombar from './detailschildcomponent/goodsdetailbottombar.vue'
+	// import toast from'../../components/common/toast/toast.vue'
 	
 	export default {
 		name: 'goodsdetail',
@@ -78,6 +80,7 @@
 				hiddern:false,
 				show:false,
 				topy:[],
+				// msg:'正在加载',
 			}
 		},
 		created() {
@@ -105,7 +108,8 @@
 			goodsconfig,
 			goodslist,
 			goodsdetailcomments,
-			goodsdetailbottombar
+			goodsdetailbottombar,
+			// toast,
 		},
 		methods:{
 			clicknone(){
@@ -133,7 +137,10 @@
 					checked:true,
 				}
 				// this.$store.commit('addgoods',goodsparams);
-				this.$store.dispatch('addgoods',goodsparams);
+				this.$store.dispatch('addgoods',goodsparams).then(res=>{
+					this.$toast.show(res,3000);
+					console.log(res);
+				})
 			}
 		}
 	}

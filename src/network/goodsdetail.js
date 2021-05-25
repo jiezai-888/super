@@ -1,6 +1,9 @@
 import {
 	instance1
 } from "./request.js"
+import qs from 'qs'
+import axios from 'axios';
+
 export function getgoodsinf(title){
 	return instance1({
 		url:'/getgooddetailsinf',
@@ -36,3 +39,36 @@ export function getgooddetailsinf(id){
 		}
 	})
 }
+
+export function login(username,userpsd) {
+	const data={
+		'username':username,
+		'userpsd':userpsd,
+	}
+	return instance1({
+		url: '/user/login',
+		method:'post',
+		headers: {
+		    'Content-type': 'application/x-www-form-urlencoded'
+		  },
+		// headers:{
+		// 	'Content-Type':'application/x-www-form-urlencoded',
+		// 	},
+		// headers:{
+		// 	'Content-Type': 'multipart/form-data;'
+		// },
+		data:qs.stringify(data)
+		// params: {
+		// 	'username':qs.stringify(),
+		// 	userpsd
+		// }
+	})
+}
+
+
+// export function login(username,userpsd){
+// 	const param={username,userpsd};
+// 	axios.post('http://localhost:8081/user/login',qs.stringify({param})).then(res=>{
+// 		console.log(res);
+// 	})
+// }

@@ -20,9 +20,10 @@
 									<span>￥<strong>{{item.price}}</strong></span>
 								</div>
 								<div class="goodscount">
-									<span>-</span>
+									<span @click="des(item.count,item)">-</span>
+									<!-- <span>x</span> -->
 									<strong>{{item.count}}</strong>
-									<span>+</span>
+									<span @click="add(item)">+</span>
 								</div>
 							</div>
 						</div>
@@ -56,12 +57,22 @@
 			
 		},
 		methods:{
-			checkchange(value){
+			checkchange(value,item){
 				// console.log(value.checked);
 				// console.log(this.$state.goodslist.check)
 				// this.$store.commit('changecheck',value);
 				// console.log(this.$state.goodslist.check)
 				this.$store.commit('changecheck',value);
+			},
+			des(value,item){
+				if(Number(value)==1){
+					return;
+				}else{
+					this.$store.commit('descount',item);
+				}
+			},
+			add(item){
+				this.$store.commit('addcount',item);
 			}
 		},
 		

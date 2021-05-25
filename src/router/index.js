@@ -7,6 +7,7 @@ import category from '../views/category/category.vue'
 import shopcar from '../views/shopcar/shopcar.vue'
 import maintabbar from '../components/content/mainTabbar/maintabbar.vue'
 import goodsdetail from '../views/goodsdetails/goodsdetail.vue'
+// import login from '../views/aboutme/login.vue'
 
 // const home = () => import('..views/aboutme/home.vue')
 // const me = () => import('../views/aboutme/me.vue')
@@ -51,6 +52,11 @@ const routes = [{
 		name: 'goodsdetail',
 		component: goodsdetail
 	},
+	// {
+	// 	path: '/user/login',
+	// 	name: 'login',
+	// 	component: login
+	// },
 ]
 
 const router = new VueRouter({

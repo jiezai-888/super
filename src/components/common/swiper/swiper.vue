@@ -1,13 +1,17 @@
   <template>
      <div id="hy-swiper">
-       <div class="swiper" @touchstart="touchStart" @touchmove="touchMove" @touchend="touchEnd">
+       <div class="swiper" @touchstart="touchStart" 
+	   @touchmove="touchMove"
+		@touchend="touchEnd">
          <slot></slot>
        </div>
        <slot name="indicator">
        </slot>
        <div class="indicator">
          <slot name="indicator" v-if="showIndicator && slideCount>1">
-           <div v-for="(item, index) in slideCount" class="indi-item" :class="{active: index === currentIndex-1}" :key="index"></div>
+           <div v-for="(item, index) in slideCount" class="indi-item" 
+		   :class="{active: index === currentIndex-1}" 
+		   :key="index"></div>
          </slot>
        </div>
      </div>
@@ -108,12 +112,9 @@
         * 操作DOM, 在DOM前后添加Slide
         */
  		  handleDom: function () {
-         // 1.获取要操作的元素
          let swiperEl = document.querySelector('.swiper');
          let slidesEls = swiperEl.getElementsByClassName('slide');
-         // 2.保存个数
          this.slideCount = slidesEls.length;
-         // 3.如果大于1个, 那么在前后分别添加一个slide
          if (this.slideCount > 1) {
            let cloneFirst = slidesEls[0].cloneNode(true);
            let cloneLast = slidesEls[this.slideCount - 1].cloneNode(true);
@@ -122,18 +123,12 @@
            this.totalWidth = swiperEl.offsetWidth;
            this.swiperStyle = swiperEl.style;
          }
-         // 4.让swiper元素, 显示第一个(目前是显示前面添加的最后一个元素)
          this.setTransform(-this.totalWidth);
        },
-       /**
-        * 拖动事件的处理
-        */
+    
        touchStart: function (e) {
-         // 1.如果正在滚动, 不可以拖动
          if (this.scrolling) return;
-         // 2.停止定时器
          this.stopTimer();
-         // 3.保存开始滚动的位置
          this.startX = e.touches[0].pageX;
        },
        touchMove: function (e) {

@@ -11,17 +11,17 @@ module.exports={
 			}
 		}
 	},
-	// devServer:{
-	// 	port:"8080",
-	// 	open:true,
-	// 	proxy:{
-	// 		"/bbb":{
-	// 			target:"http://localhost:8081/bbb/",
-	// 			changeOrigin:true,
-	// 			pathRewrite:{
-	// 				"^/bbb":""
-	// 			}
-	// 		}
-	// 	}
-	// }
+	devServer:{
+		port:"8080",
+		open:true,
+		proxy:{
+			"/api":{
+				target:"http://localhost:8081",
+				changeOrigin:true,
+				pathRewrite:{
+					'/api':''
+				}
+			}
+		}
+	}
 }

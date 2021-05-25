@@ -3,7 +3,7 @@ import axios from 'axios';
 export function instance1(config) {
 	const instance = axios.create({
 		baseURL: 'http://localhost:8081',
-		timeout: 6000
+		timeout: 6000,
 	})
 
 	// 对请求进行拦截
@@ -27,16 +27,17 @@ export function instance1(config) {
 
 export function instance2(config) {
 	const instance = axios.create({
-		baseURL: 'http://localhost:8081',
-		timeout: 6000
+		// baseURL: 'http://localhost:8081',
+		baseURL:'/api',
+		timeout: 6000,
 	})
 
 	// 对请求进行拦截
 	instance.interceptors.request.use(config => {
-			return config
+			return config;
 		},
 		err => {
-			return err
+			return err;
 		})
 
 	// 对响应进行拦截
